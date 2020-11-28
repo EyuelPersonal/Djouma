@@ -11,7 +11,7 @@ chat_info = dict()
 
 def start(update,context):
     user = update.message.from_user.first_name
-    update.message.reply_text("Hola {}, ¿cuales son las noticias de hoy?".format(user))
+    update.message.reply_text("Hola {}, ¿cuales son las noticias de hoy? Por favor, sigue el siguiente formato: Desde [tu ONG] informamos que: [tu noticia]".format(user))
     return START
 
 def store_message(update,context):

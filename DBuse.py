@@ -16,14 +16,12 @@ def delete_news(user_id):
     mydb.commit()
 
 def get_news():
-    news = []
+    news = {}
     today = datetime.datetime.now().date
-    print(today)
-
     mydb = DBHandler.get_mydb()
     cursor = mydb.cursor()
-    cursor.execute(" select distinct news from news_db where news_date = curdate()-1".format(today))
+    cursor.execute(" select distinct user_name, news from news_db where news_date = curdate()-1".format(today))
     results = cursor.fetchall()
     for r in results:
-        news.append(r[0])
+        news[str(r[0])] = str(r[1])
     return news
