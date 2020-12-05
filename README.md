@@ -1,7 +1,7 @@
 # Djouma
-This is a project for Charitable Living, a website that partners with NGOs in order to help them raise money
+This is a project for Charitable Living, a website that partners with NGOs in order to help them raise money.
 
-Our main method of helping raise money is by setting up Affiliate links in our website where people can access online shops form (e.g Amazon.
+Our main method of helping raise money is by setting up Affiliate links in our website where people can access online shops form (e.g Amazon).
 For every purchase made in those websites, we recieve a little commision, which we give, entirely, to the charity we are collaboarating with 
 at that point in time.
 
