@@ -4,8 +4,15 @@ TELEGRAM_INPUT = TELEGRAM_OUTPUT = HOST = USER = DATABASE = PASS = WPNAME = WPPA
 
 def __init__():
     global TELEGRAM_INPUT, TELEGRAM_OUTPUT, HOST, USER, DATABASE, PASS, WPNAME, WPPASS, URL
-    with open("/Users/eyuelmelese/Djouma/settings.json") as data:
-        data = json.load(data)
+    try:
+        with open("/Users/eyuelmelese/Djouma/settings.json") as data:
+            data = json.load(data)
+    except Exception as e:
+        try:
+            with open("/home/eyuelwolde_gmail_com/Djouma/settings.json") as data:
+                data = json.load(data)
+        except Exception as eb:
+            print(eb)
     TELEGRAM_INPUT = data['API_KEYS']['TELEGRAM_INPUT']
     TELEGRAM_OUTPUT = data['API_KEYS']['TELEGRAM_OUTPUT']
     HOST = data['db']['host']
