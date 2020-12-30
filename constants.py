@@ -1,9 +1,9 @@
 import json
 
-TELEGRAM_INPUT = TELEGRAM_OUTPUT = HOST = USER = DATABASE = PASS = WPNAME = WPPASS = URL = ""
+TELEGRAM_INPUT = TELEGRAM_OUTPUT = HOST = USER = DATABASE = PASS = WPNAME = WPPASS = URL = TIP_LINK = ""
 
 def __init__():
-    global TELEGRAM_INPUT, TELEGRAM_OUTPUT, HOST, USER, DATABASE, PASS, WPNAME, WPPASS, URL
+    global TELEGRAM_INPUT, TELEGRAM_OUTPUT, HOST, USER, DATABASE, PASS, WPNAME, WPPASS, URL, TIP_LINK
     try:
         with open("/Users/eyuelmelese/Djouma/settings.json") as data:
             data = json.load(data)
@@ -22,3 +22,4 @@ def __init__():
     WPNAME = data['wp']['user_name']
     WPPASS = data['wp']['password']
     URL = data['wp']['url']
+    TIP_LINK = data['tip_link']
