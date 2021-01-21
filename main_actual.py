@@ -14,8 +14,8 @@ def main ():
     bot = telegram.Bot(token=API_KEY)
     a = 0
     if len(news) > 0:
-        for i in news:
-            bot.send_message(chat_id='@djouma_canal', text="{}".format(i))
+        for i in news.keys():
+            bot.send_message(chat_id='@djouma_canal', text="{}".format(news[i]))
             a += 1
         if a == len(news) and a >=1 and tod_num == 3:
             bot.send_message(chat_id='@djouma_canal',
