@@ -16,8 +16,8 @@ news = DBuse.get_news()
 
 def post(url, user, password, date, title, post):
  credentials = user + ':' + password
- token = base64.standard_b64encode(credentials)
- header = {'Authorization': 'Basic ' + token}
+ token = base64.b64encode(credentials.encode())
+ header = {'Authorization': 'Basic ' + token.decode('utf-8')}
  post = {
   'title'    : '{}'.format(title),
   'status'   : 'publish',
@@ -27,6 +27,7 @@ def post(url, user, password, date, title, post):
   'date_gtm'   : str(date)
 
  }
+ print('rd2w')
  responce = requests.post(url , headers=header, json=post)
  print(responce)
 
