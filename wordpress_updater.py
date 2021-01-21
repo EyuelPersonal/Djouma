@@ -16,8 +16,8 @@ news = DBuse.get_news()
 
 def post(url, user, password, date, title, post):
  credentials = user + ':' + password
- token = base64.b64encode(credentials.encode())
- header = {'Authorization': 'Basic ' + token.decode('utf-8')}
+ token = base64.standard_b64encode(credentials)
+ header = {'Authorization': 'Basic ' + token}
  post = {
   'title'    : '{}'.format(title),
   'status'   : 'publish',
