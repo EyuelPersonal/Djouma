@@ -17,7 +17,7 @@ def main ():
         for i in news.keys():
             bot.send_message(chat_id='@djouma_canal', text="{}".format(news[i]))
             a += 1
-        if a == len(news) and a >=1 and tod_num == 3:
+        if a == len(news) and tod_num == 3:
             bot.send_message(chat_id='@djouma_canal',
                                      text="Gracias por tu interés en Djouma, solo ese hecho es un gran placer para nosotros. Como ya sabrás, una de las cosas con las que proveemos a los niñ@s becados por Djouma, es el desayudo diario, un desayuno tiene un coste de tan solo 0.20€, 1 EURO equivale al desayuno de 5 niños, te gustaría empezar el día invitando a desayunar a un@ niñ@? Haz click aquí {} para invitar.".format(constants.TIP_LINK),
                                      )
