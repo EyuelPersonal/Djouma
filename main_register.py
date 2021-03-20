@@ -18,7 +18,7 @@ def main ():
         entry_points= [CommandHandler('start',bot_engine.start)],
         states={
 
-            START: [MessageHandler(filters=Filters.text,callback=bot_engine.store_message)],
+            START: [MessageHandler(filters=[Filters.text, Filters.photo],callback=bot_engine.store_message)],
 
             DELETE: [CommandHandler('delete',bot_engine.delete)]
 
