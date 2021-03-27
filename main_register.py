@@ -1,8 +1,8 @@
-from telegram.ext import Updater, CommandHandler, ConversationHandler, CallbackContext,MessageHandler,Filters
+from telegram.ext import Updater, CommandHandler, ConversationHandler, CallbackContext,MessageHandler,Filters,CallbackQueryHandler
 import bot_engine
 import constants
 
-START,SUBMIT,DELETE= range(3)
+START,PHOTO, WITH_PHOTO, WITHOUT_PHOTO,SUBMIT,DELETE= range(6)
 
 constants.__init__()
 
@@ -18,7 +18,11 @@ def main ():
         entry_points= [CommandHandler('start',bot_engine.start)],
         states={
 
-            START: [MessageHandler(filters=[Filters.text, Filters.photo],callback=bot_engine.store_message)],
+            PHOTO: [CallbackQueryHandler(bot_engine.photo)],
+
+            WITHOUT_PHOTO: [MessageHandler(filters=Filters.text, callback=bot_engine.store_message_without)],
+
+            WITH_PHOTO:[MessageHandler(filters=Filters.photo, callback=bot_engine.store_message_with)],
 
             DELETE: [CommandHandler('delete',bot_engine.delete)]
 

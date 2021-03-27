@@ -4,6 +4,10 @@ import base64
 import constants
 import DBuse
 from io import BytesIO
+from PIL import Image
+from bs4 import BeautifulSoup
+
+import json
 
 constants.__init__()
 
@@ -22,13 +26,31 @@ class images():
   media = {'file':image}
 
   responce = requests.post(self.url_image, headers = header,  files = media)
+  print(responce.content.decode('utf-8'))
 
-  id = responce.content.decode('utf-8')['id']
-  link = responce.content.decode('utf-8')['link']
+  id = json.loads(responce.content.decode('utf-8'))['id']
+  link = json.loads(responce.content.decode('utf-8'))['link']
 
   DBuse.add_image(news_id, link, id)
 
  def download_image(self, news_id):
-  image_link = DBuse.get_image(news_id)
-  image = BytesIO(requests.get(image_link))
-  return image
+  page_link = DBuse.get_image(news_id)
+  links  = None
+  for i in page_link.keys():
+   links = page_link[i]
+
+  html = requests.get(links).content
+  soup = BeautifulSoup(html)
+  images = soup.findAll('p',{'class':'attachment'})[0]
+  soup_2 = BeautifulSoup(str(images))
+
+  image_link = None
+  for a in soup_2.findAll('a',href = True):
+   image_link = a['href']
+
+
+  print(image_link)
+  image_file = requests.get(image_link).content
+
+
+  return image_file

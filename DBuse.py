@@ -21,13 +21,12 @@ def get_news():
     today = datetime.datetime.now().date
     mydb = DBHandler.get_mydb()
     cursor = mydb.cursor()
-    cursor.execute(" select distinct user_name, news, news_id from news_db where news_date > curdate() - 1".format(today))
+    cursor.execute(" select distinct user_name, news, news_id from news_db where news_date > curdate() -1".format(today))
     results = cursor.fetchall()
     for r in results:
-        news[str(r[0])] = str(r[1])
-    for r in  results:
-        news_id[str(r[1])] = str(r[2])
-    return news, news_id
+        news[str(r[2])] = str(r[1])
+
+    return news
 
 def add_image(news_id, image_link, image_id):
     mydb = DBHandler.get_mydb()
@@ -41,7 +40,7 @@ def get_image(news_id):
     today = datetime.datetime.now().date()
     mydb = DBHandler.get_mydb()
     cursor = mydb.cursor()
-    cursor.execute("select distict news_id, image_link from images_db where news_id = {}".format(news_id))
+    cursor.execute("select distinct news_id, image_link from images_db where news_id = {}".format(news_id))
     results = cursor.fetchall()
     for r in results:
         images[str(r[0])] = str(r[1])

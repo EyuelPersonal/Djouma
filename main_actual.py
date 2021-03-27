@@ -4,6 +4,7 @@ import telegram
 from datetime import datetime, date
 from image_handler import images
 from io import BytesIO
+from PIL import Image
 
 images = images()
 
@@ -14,19 +15,21 @@ API_KEY = constants.TELEGRAM_OUTPUT
 def main ():
     tod = datetime.today()
     tod_num = tod.day
-    news = DBuse.get_news()[0]
-    news_ids = DBuse.get_news()[1]
+    news = DBuse.get_news()
+    print(news)
     bot = telegram.Bot(token=API_KEY)
     a = 0
     if len(news) > 0:
         for i in news.keys():
-            im = DBuse.get_image(news_ids[news[i]])
+            im = DBuse.get_image(i)
+            print(im)
             if len(im) == 0:
                 bot.send_message(chat_id='@djouma_canal', text="{}".format(news[i]))
                 a += 1
             elif len(im) > 0:
-                image = images.download_image(news_ids[news[i]])
-                bot.send_message(chat_id='@djouma_canal', text="{}", image = image).format(news[i])
+                image = images.download_image(i)
+                bytes = BytesIO(image)
+                bot.send_photo(chat_id='@djouma_canal',photo=bytes, caption = news[i] )
                 a += 1
         if a == len(news) and tod_num == 3:
             bot.send_message(chat_id='@djouma_canal',
