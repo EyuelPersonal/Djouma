@@ -3,8 +3,6 @@ import datetime
 import base64
 import constants
 import DBuse
-from io import BytesIO
-from PIL import Image
 from bs4 import BeautifulSoup
 
 import json

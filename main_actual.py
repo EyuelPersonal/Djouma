@@ -4,7 +4,7 @@ import telegram
 from datetime import datetime, date
 from image_handler import images
 from io import BytesIO
-from PIL import Image
+
 
 images = images()
 

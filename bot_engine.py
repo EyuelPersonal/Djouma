@@ -4,12 +4,7 @@ import telegram
 from telegram.ext import ConversationHandler
 from io import BytesIO
 from image_handler import images
-import os
-from PIL import Image
 
-curr = os.curdir
-folder = 'Images'
-images_path = os.path.join(curr,folder)
 
 
 images = images()
