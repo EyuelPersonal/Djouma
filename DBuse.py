@@ -21,7 +21,7 @@ def get_news():
     today = datetime.datetime.now().date
     mydb = DBHandler.get_mydb()
     cursor = mydb.cursor()
-    cursor.execute(" select distinct user_name, news, news_id from news_db where news_date > curdate() -1".format(today))
+    cursor.execute(" select distinct user_name, news, news_id from news_db where news_date > curdate() -5".format(today))
     results = cursor.fetchall()
     for r in results:
         news[str(r[2])] = str(r[1])
